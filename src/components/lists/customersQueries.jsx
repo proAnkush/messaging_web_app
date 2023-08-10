@@ -6,9 +6,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import axios from "axios";
+// import axios from "axios";
 import config from "../../config";
 import { Link } from "react-router-dom";
+import { API } from "aws-amplify";
 
 export default function QueriesList() {
   const [queries, setQueries] = React.useState([]);
@@ -24,8 +25,8 @@ export default function QueriesList() {
   }, []);
 
   function fetchQueries(customerId) {
-    axios
-      .get(config.backendBaseUrl + `/customers/${customerId}/queries`)
+    API
+      .get("mwabapi", `/customers/${customerId}/queries`)
       .then((res) => {
         console.log(res);
         setQueries(res.data.queries);
@@ -43,9 +44,9 @@ export default function QueriesList() {
     let customerProfile = JSON.parse(localStorage.getItem("profile"));
 
     console.log(customerProfile);
-    axios
+    API
       .post(
-        config.backendBaseUrl + `/customers/${customerProfile.PK}/queries`,
+        "mwabapi", `/customers/${customerProfile.PK}/queries`,
         {
           queryTitle: createQueryTitle,
         }

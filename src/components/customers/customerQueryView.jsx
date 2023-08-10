@@ -1,5 +1,5 @@
 // import { textAlign } from "@mui/system";
-import axios from "axios";
+import { API } from "aws-amplify";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import config from "../../config";
@@ -28,14 +28,13 @@ function CustomerQueryView(props) {
     let msgContent = message;
     console.log(customerProfile);
     console.log(customerQuery);
-    axios
-      .post(
-        config.backendBaseUrl +
-          `/customers/${customerProfile.PK}/queries/${customerQuery.queryId}/messages`,
-        {
-          messageBody: msgContent,
-        }
-      )
+    API.post(
+      "mwabapi",
+      `/customers/${customerProfile.PK}/queries/${customerQuery.queryId}/messages`,
+      {
+        messageBody: msgContent,
+      }
+    )
       .then((res) => {
         console.log(messages);
         fetchMessages(customerProfile.PK, customerQuery.queryId);
@@ -49,10 +48,7 @@ function CustomerQueryView(props) {
       });
   };
   const fetchQuery = (customerId, queryId) => {
-    axios
-      .get(
-        config.backendBaseUrl + `/customers/${customerId}/queries/${queryId}`
-      )
+    API.get("mwabapi", `/customers/${customerId}/queries/${queryId}`)
       .then((res) => {
         console.log("res", res);
         setCustomerQuery(res.data);
@@ -63,11 +59,7 @@ function CustomerQueryView(props) {
       });
   };
   const fetchMessages = (customerId, queryId) => {
-    axios
-      .get(
-        config.backendBaseUrl +
-          `/customers/${customerId}/queries/${queryId}/messages`
-      )
+    API.get("mwabapi", `/customers/${customerId}/queries/${queryId}/messages`)
       .then((res) => {
         console.log("res2", res);
         let msgs = res.data.messages;

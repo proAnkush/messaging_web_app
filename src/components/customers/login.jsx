@@ -6,7 +6,7 @@ function Login() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const navigate = useNavigate();
-  console.log(process.env);
+  // console.log(process.env);
   const handlePhoneInput = (e) => {
     e.preventDefault();
   };

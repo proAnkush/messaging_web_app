@@ -1,4 +1,6 @@
-import axios from "axios";
+// import axios from "axios";
+
+import { API } from "aws-amplify";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import config from "../../config";
@@ -27,14 +29,13 @@ function AgentQueryView(props) {
     let msgContent = message;
     console.log(agentProfile);
     console.log(customerQuery);
-    axios
-      .post(
-        config.backendBaseUrl +
-          `/agents/${agentProfile.PK}/queries/${customerQuery.queryId}/messages`,
-        {
-          messageBody: msgContent,
-        }
-      )
+    API.post(
+      "mwabapi",
+      `/agents/${agentProfile.PK}/queries/${customerQuery.queryId}/messages`,
+      {
+        messageBody: msgContent,
+      }
+    )
       .then((res) => {
         console.log(messages);
         fetchMessages(agentProfile.PK, customerQuery.queryId);
@@ -51,8 +52,7 @@ function AgentQueryView(props) {
     if (!agentId || !queryId) {
       return console.log("no agentId, queryId");
     }
-    axios
-      .get(config.backendBaseUrl + `/agents/${agentId}/queries/${queryId}`)
+    API.get("mwabapi", `/agents/${agentId}/queries/${queryId}`)
       .then((res) => {
         console.log("res", res);
         setCustomerQuery(res.data || {});
@@ -66,10 +66,7 @@ function AgentQueryView(props) {
     if (!agentId || !queryId) {
       return console.log("no agentId, queryId");
     }
-    axios
-      .get(
-        config.backendBaseUrl + `/agents/${agentId}/queries/${queryId}/messages`
-      )
+    API.get("mwabapi", `/agents/${agentId}/queries/${queryId}/messages`)
       .then((res) => {
         console.log("res2", res);
         let msgs = (res.data && res.data.messages) || [];
@@ -96,11 +93,11 @@ function AgentQueryView(props) {
       console.log(newStatus, queryId, customerId, agentId);
       return;
     }
-    axios
-      .put(config.backendBaseUrl + `/agents/${agentId}/queries/${queryId}`, {
-        newStatus: newStatus,
-        customerId: customerId,
-      })
+
+    API.put("mwabapi", `/agents/${agentId}/queries/${queryId}`, {
+      newStatus: newStatus,
+      customerId: customerId,
+    })
       .then((res) => {
         console.log(res);
         fetchQuery(agentId, queryId);

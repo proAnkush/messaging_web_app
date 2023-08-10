@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import axios from "axios";
+// import axios from "axios";
 import config from "../../config";
 import { Link } from "react-router-dom";
 
@@ -30,9 +30,9 @@ function AllQueries() {
   ) => {
     const searchString = searchQueryInputValue || undefined;
     queryStatus = queryStatus || filterQueryStatusInputValue || undefined;
-    axios
+    API
       .get(
-        config.backendBaseUrl +
+        "mwabapi",
           "/queries" +
           getQueryString({ searchString, queryStatus })
       )
@@ -59,8 +59,8 @@ function AllQueries() {
     );
   };
   const fetchAllAgents = () => {
-    axios
-      .get(config.backendBaseUrl + "/agents")
+    API
+      .get("mwabapi", "/agents")
       .then((res) => {
         console.log("all agents: ", res.data.agents);
         setAgents(res.data.agents || []);
@@ -78,9 +78,9 @@ function AllQueries() {
     let agentProfile = JSON.parse(localStorage.getItem("profile"));
     console.log(agentId);
     console.log(queryId);
-    axios
+    API
       .post(
-        config.backendBaseUrl + `/agents/${agentProfile.PK}/queries/${queryId}`,
+        "mwabapi", `/agents/${agentProfile.PK}/queries/${queryId}`,
         {
           agentId: agentId,
         }
