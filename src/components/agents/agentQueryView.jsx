@@ -55,7 +55,7 @@ function AgentQueryView(props) {
       .get(config.backendBaseUrl + `/agents/${agentId}/queries/${queryId}`)
       .then((res) => {
         console.log("res", res);
-        setCustomerQuery(res.data);
+        setCustomerQuery(res.data || {});
       })
       .catch((err) => {
         console.trace("er", err);
@@ -72,7 +72,7 @@ function AgentQueryView(props) {
       )
       .then((res) => {
         console.log("res2", res);
-        let msgs = res.data.messages;
+        let msgs = (res.data && res.data.messages) || [];
         msgs = msgs.map((message) => {
           return {
             position: (message.messageSender === agentId && "right") || "left",

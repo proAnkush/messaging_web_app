@@ -23,7 +23,7 @@ function AgentNav() {
   useEffect(() => {
     let profile = JSON.parse(localStorage.getItem("profile"));
     console.log(profile);
-    setNavHeading(profile.PK);
+    profile && profile.PK && setNavHeading(profile.PK);
     return () => {};
   });
   return (
