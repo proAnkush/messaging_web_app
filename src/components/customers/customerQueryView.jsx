@@ -29,7 +29,7 @@ function CustomerQueryView(props) {
     console.log(customerProfile);
     console.log(customerQuery);
     API.post(
-      "mwabapi",
+      "mwabapi2",
       `/customers/${customerProfile.PK}/queries/${customerQuery.queryId}/messages`,
       {
         messageBody: msgContent,
@@ -48,7 +48,7 @@ function CustomerQueryView(props) {
       });
   };
   const fetchQuery = (customerId, queryId) => {
-    API.get("mwabapi", `/customers/${customerId}/queries/${queryId}`)
+    API.get("mwabapi2", `/customers/${customerId}/queries/${queryId}`)
       .then((res) => {
         console.log("res", res);
         setCustomerQuery(res.data);
@@ -59,7 +59,7 @@ function CustomerQueryView(props) {
       });
   };
   const fetchMessages = (customerId, queryId) => {
-    API.get("mwabapi", `/customers/${customerId}/queries/${queryId}/messages`)
+    API.get("mwabapi2", `/customers/${customerId}/queries/${queryId}/messages`)
       .then((res) => {
         console.log("res2", res);
         let msgs = res.data.messages;

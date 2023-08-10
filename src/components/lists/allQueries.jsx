@@ -31,12 +31,10 @@ function AllQueries() {
   ) => {
     const searchString = searchQueryInputValue || undefined;
     queryStatus = queryStatus || filterQueryStatusInputValue || undefined;
-    API
-      .get(
-        "mwabapi",
-          "/queries" +
-          getQueryString({ searchString, queryStatus })
-      )
+    API.get(
+      "mwabapi2",
+      "/queries" + getQueryString({ searchString, queryStatus })
+    )
       .then((res) => {
         setQueries(res.data.queries);
       })
@@ -60,8 +58,7 @@ function AllQueries() {
     );
   };
   const fetchAllAgents = () => {
-    API
-      .get("mwabapi", "/agents")
+    API.get("mwabapi2", "/agents")
       .then((res) => {
         console.log("all agents: ", res.data.agents);
         setAgents(res.data.agents || []);
@@ -79,13 +76,9 @@ function AllQueries() {
     let agentProfile = JSON.parse(localStorage.getItem("profile"));
     console.log(agentId);
     console.log(queryId);
-    API
-      .post(
-        "mwabapi", `/agents/${agentProfile.PK}/queries/${queryId}`,
-        {
-          agentId: agentId,
-        }
-      )
+    API.post("mwabapi2", `/agents/${agentProfile.PK}/queries/${queryId}`, {
+      agentId: agentId,
+    })
       .then((res) => {
         console.log(res);
         fetchAllQueries();

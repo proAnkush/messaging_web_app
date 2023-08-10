@@ -24,7 +24,7 @@ export default function QueriesList() {
   }, []);
 
   function fetchQueries(agentId) {
-    API.get("mwabapi", `/agents/${agentId}/queries`)
+    API.get("mwabapi2", `/agents/${agentId}/queries`)
       .then((res) => {
         console.log(res);
         setQueries(res.data.queries);

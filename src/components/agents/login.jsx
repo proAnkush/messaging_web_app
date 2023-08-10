@@ -18,7 +18,7 @@ function Login() {
     if (!phone || !name) {
       return alert("please provide phone and name");
     }
-    let profile = await API.post("mwabapi", "/agents", {
+    let profile = await API.post("mwabapi2", "/agents", {
       agentName: name,
       agentPhone: phone,
     })

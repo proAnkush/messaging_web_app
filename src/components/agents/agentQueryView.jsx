@@ -30,7 +30,7 @@ function AgentQueryView(props) {
     console.log(agentProfile);
     console.log(customerQuery);
     API.post(
-      "mwabapi",
+      "mwabapi2",
       `/agents/${agentProfile.PK}/queries/${customerQuery.queryId}/messages`,
       {
         messageBody: msgContent,
@@ -52,7 +52,7 @@ function AgentQueryView(props) {
     if (!agentId || !queryId) {
       return console.log("no agentId, queryId");
     }
-    API.get("mwabapi", `/agents/${agentId}/queries/${queryId}`)
+    API.get("mwabapi2", `/agents/${agentId}/queries/${queryId}`)
       .then((res) => {
         console.log("res", res);
         setCustomerQuery(res.data || {});
@@ -66,7 +66,7 @@ function AgentQueryView(props) {
     if (!agentId || !queryId) {
       return console.log("no agentId, queryId");
     }
-    API.get("mwabapi", `/agents/${agentId}/queries/${queryId}/messages`)
+    API.get("mwabapi2", `/agents/${agentId}/queries/${queryId}/messages`)
       .then((res) => {
         console.log("res2", res);
         let msgs = (res.data && res.data.messages) || [];
@@ -94,7 +94,7 @@ function AgentQueryView(props) {
       return;
     }
 
-    API.put("mwabapi", `/agents/${agentId}/queries/${queryId}`, {
+    API.put("mwabapi2", `/agents/${agentId}/queries/${queryId}`, {
       newStatus: newStatus,
       customerId: customerId,
     })

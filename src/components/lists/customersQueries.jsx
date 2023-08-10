@@ -25,8 +25,7 @@ export default function QueriesList() {
   }, []);
 
   function fetchQueries(customerId) {
-    API
-      .get("mwabapi", `/customers/${customerId}/queries`)
+    API.get("mwabapi2", `/customers/${customerId}/queries`)
       .then((res) => {
         console.log(res);
         setQueries(res.data.queries);
@@ -44,13 +43,9 @@ export default function QueriesList() {
     let customerProfile = JSON.parse(localStorage.getItem("profile"));
 
     console.log(customerProfile);
-    API
-      .post(
-        "mwabapi", `/customers/${customerProfile.PK}/queries`,
-        {
-          queryTitle: createQueryTitle,
-        }
-      )
+    API.post("mwabapi2", `/customers/${customerProfile.PK}/queries`, {
+      queryTitle: createQueryTitle,
+    })
       .then((res) => {
         fetchQueries(customerProfile.PK);
         console.log("created query: ", res);
