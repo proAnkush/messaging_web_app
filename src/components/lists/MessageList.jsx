@@ -111,7 +111,7 @@ function MessageList({ messages = [] }) {
 
   const scrollToBottom = () => {
     console.log("me", messagesEnd);
-    messagesEnd.scrollIntoView({ behavior: "smooth" });
+    messagesEnd && messagesEnd.scrollIntoView({ behavior: "smooth" });
   };
   return (
     <div style={messageWindowStyle}>
