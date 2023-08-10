@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/": {
+      "name": "/",
+      "lambdaFunction": "messagingwebapp5a1f9407",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

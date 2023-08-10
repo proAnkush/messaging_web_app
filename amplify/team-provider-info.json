@@ -10,6 +10,19 @@
       "StackName": "amplify-messagingwebapp-dev-182214",
       "StackId": "arn:aws:cloudformation:ap-south-1:346719532817:stack/amplify-messagingwebapp-dev-182214/bb6ded40-377c-11ee-b86b-0a7dae04bf1c",
       "AmplifyAppId": "d34ee1dzdjiyrd"
+    },
+    "categories": {
+      "function": {
+        "messagingwebapp5a1f9407": {
+          "accessKeyId": "AKIAVBOQYG4ITJ4CQJHJ",
+          "secretAccessKey": "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",
+          "deploymentBucketName": "amplify-messagingwebapp-dev-182214-deployment",
+          "s3Key": "amplify-builds/messagingwebapp5a1f9407-41655650625a31783142-build.zip"
+        }
+      },
+      "api": {
+        "mwabapi": {}
+      }
     }
   }
 }
