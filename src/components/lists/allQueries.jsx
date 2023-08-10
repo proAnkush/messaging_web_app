@@ -181,7 +181,7 @@ function AllQueries() {
                       style={{ width: "200px" }}
                       onChange={(e) => handleAgentAssigned(e, query.queryId)}
                     >
-                      <option value={undefined} disabled>
+                      <option value={undefined} disabled selected>
                         Assign an agent
                       </option>
                       {agents?.map((agent) => {
