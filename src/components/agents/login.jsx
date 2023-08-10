@@ -14,6 +14,7 @@ function Login() {
   };
   const login = async (e) => {
     e.preventDefault();
+    console.log("login click");
     if (!phone || !name) {
       return alert("please provide phone and name");
     }

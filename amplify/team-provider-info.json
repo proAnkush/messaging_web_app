@@ -17,7 +17,7 @@
           "accessKeyId": "AKIAVBOQYG4ITJ4CQJHJ",
           "secretAccessKey": "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",
           "deploymentBucketName": "amplify-messagingwebapp-dev-182214-deployment",
-          "s3Key": "amplify-builds/messagingwebapp5a1f9407-41655650625a31783142-build.zip"
+          "s3Key": "amplify-builds/messagingwebapp5a1f9407-3231794f3946656d3479-build.zip"
         }
       },
       "api": {

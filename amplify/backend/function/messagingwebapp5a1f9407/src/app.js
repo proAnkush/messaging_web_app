@@ -1,95 +1,69 @@
-/*
-Copyright 2017 - 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
-    http://aws.amazon.com/apache2.0/
-or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and limitations under the License.
-*/
+var createError = require("http-errors");
+var express = require("express");
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var logger = require("morgan");
+var cors = require("cors");
+// app.use(cors());
+const corsOptions = {
+  origin: (origin, callback) => {
+    console.log("origin: ", origin);
+    return callback(null, true);
+    // if (constants.allowedCORSOrigins.includes(origin))
+    //   return callback(null, true);
 
-/* Amplify Params - DO NOT EDIT
-	ENV
-	REGION
-	ACCESS_KEY_ID
-	SECRET_ACCESS_KEY
-Amplify Params - DO NOT EDIT */
+    // callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
 
-const express = require("express");
-const bodyParser = require("body-parser");
-const awsServerlessExpressMiddleware = require("aws-serverless-express/middleware");
+var indexRouter = require("./routes/index");
+var agentsRouter = require("./routes/agents");
+var customersRouter = require("./routes/customers");
+var queriesRouter = require("./routes/queries");
+require("dotenv").config();
+require("aws-sdk").config.update({
+  region: process.env.REGION,
+  credentials: {
+    accessKeyId: process.env.ACCESS_KEY_ID,
+    secretAccessKey: process.env.SECRET_ACCESS_KEY,
+  },
+});
 
-// declare a new express app
-const app = express();
-app.use(bodyParser.json());
-app.use(awsServerlessExpressMiddleware.eventContext());
+var app = express();
 
-// Enable CORS for all methods
+// view engine setup
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
+
+app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "public")));
+app.use(cors(corsOptions));
+
+app.use("/", indexRouter);
+app.use("/agents", agentsRouter);
+app.use("/customers", customersRouter);
+app.use("/queries", queriesRouter);
+
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*");
-  next();
+  next(createError(404));
 });
 
-/**********************
- * Example get method *
- **********************/
+// error handler
+app.use(function(err, req, res, next) {
+                                        // set locals, only providing error in development
+                                        // res.locals.message = err.message;
+                                        // res.locals.error = req.app.get("env") === "development" ? err : {};
 
-app.get("/", function(req, res) {
-  // Add your code here
-  res.json({ success: "get call succeed!", url: req.url });
-});
+                                        // // render the error page
+                                        // res.status(err.status || 500);
+                                        // res.render("error");
+                                        return res.sendStatus(500);
+                                      });
 
-app.get("//*", function(req, res) {
-  // Add your code here
-  res.json({ success: "get call succeed!", url: req.url });
-});
-
-/****************************
- * Example post method *
- ****************************/
-
-app.post("/", function(req, res) {
-  // Add your code here
-  res.json({ success: "post call succeed!", url: req.url, body: req.body });
-});
-
-app.post("//*", function(req, res) {
-  // Add your code here
-  res.json({ success: "post call succeed!", url: req.url, body: req.body });
-});
-
-/****************************
- * Example put method *
- ****************************/
-
-app.put("/", function(req, res) {
-  // Add your code here
-  res.json({ success: "put call succeed!", url: req.url, body: req.body });
-});
-
-app.put("//*", function(req, res) {
-  // Add your code here
-  res.json({ success: "put call succeed!", url: req.url, body: req.body });
-});
-
-/****************************
- * Example delete method *
- ****************************/
-
-app.delete("/", function(req, res) {
-  // Add your code here
-  res.json({ success: "delete call succeed!", url: req.url });
-});
-
-app.delete("//*", function(req, res) {
-  // Add your code here
-  res.json({ success: "delete call succeed!", url: req.url });
-});
-
-app.listen(3000, function() {
-  console.log("App started");
-});
-
-// Export the app object. When executing the application local this does nothing. However,
-// to port it to AWS Lambda we will create a wrapper around that will load the app from
-// this file
 module.exports = app;
