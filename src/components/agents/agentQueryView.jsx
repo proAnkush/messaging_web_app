@@ -1,4 +1,3 @@
-import { textAlign } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -31,7 +30,7 @@ function AgentQueryView(props) {
     axios
       .post(
         config.backendBaseUrl +
-          `/agents/${agentProfile?.PK}/queries/${customerQuery?.queryId}/messages`,
+          `/agents/${agentProfile.PK}/queries/${customerQuery.queryId}/messages`,
         {
           messageBody: msgContent,
         }
@@ -43,8 +42,8 @@ function AgentQueryView(props) {
       })
       .catch((err) => {
         console.error(err);
-        if (err?.response?.data) {
-          alert(err?.response?.data);
+        if (err.response.data) {
+          alert(err.response.data);
         }
       });
   };
@@ -79,8 +78,8 @@ function AgentQueryView(props) {
             position: (message.messageSender === agentId && "right") || "left",
             type: "text",
             text: message.messageBody,
-            date: message?.createdAt,
-            senderId: message?.messageSender,
+            date: message.createdAt,
+            senderId: message.messageSender,
           };
         });
         setMessages(msgs);
@@ -109,8 +108,8 @@ function AgentQueryView(props) {
       })
       .catch((err) => {
         console.log(err);
-        if (err?.response?.data) {
-          alert(err?.response?.data);
+        if (err.response.data) {
+          alert(err.response.data);
         }
       });
   };
@@ -165,13 +164,13 @@ function AgentQueryView(props) {
         <div style={topBarDetailsStyle}>
           {console.log(customerQuery)}
           <p style={topBarDetailStyle}>
-            <b>QueryId</b>: {customerQuery?.queryId}
+            <b>QueryId</b>: {customerQuery.queryId}
           </p>
           <p style={topBarDetailStyle}>
-            <b>CustomerId</b>: {customerQuery?.customerId}
+            <b>CustomerId</b>: {customerQuery.customerId}
           </p>
           <p style={topBarDetailStyle}>
-            <b>Query Title</b>: {customerQuery?.queryTitle}
+            <b>Query Title</b>: {customerQuery.queryTitle}
           </p>
           <p style={topBarDetailStyle}>
             <b>Query Status</b>:{" "}
@@ -181,40 +180,39 @@ function AgentQueryView(props) {
               onChange={(e) =>
                 handleChangeQueryStatus(
                   e,
-                  customerQuery?.queryId,
-                  customerQuery?.customerId,
-                  agentProfile?.PK
+                  customerQuery.queryId,
+                  customerQuery.customerId,
+                  agentProfile.PK
                 )
               }
             >
-              {
-                ["agentAssigned", "closed"].map((status) => {
-                  return (
-                    <option
-                      value={status}
-                      selected={status === customerQuery?.queryStatus}
-                    >
-                      {status}
-                    </option>
-                  );
-                })
-                // {customerQuery?.queryStatus}
+              {["agentAssigned", "closed"].map((status) => {
+                return (
+                  <option
+                    value={status}
+                    selected={status === customerQuery.queryStatus}
+                  >
+                    {status}
+                  </option>
+                );
+              })
+              // {customerQuery.queryStatus}
               }
             </select>
           </p>
           <p style={topBarDetailStyle}>
-            <b>Created At</b>: {customerQuery?.createdAt}
+            <b>Created At</b>: {customerQuery.createdAt}
           </p>
         </div>
       </div>
       <div style={bottomBarStyle}>
         <MessageList messages={messages} />
         {/* <SendMessageComponent
-          queryId={customerQuery?.queryId}
-          agentId={agentProfile?.agentId}
+          queryId={customerQuery.queryId}
+          agentId={agentProfile.agentId}
         /> */}
       </div>
-      {(customerQuery?.agentId === agentProfile.PK && (
+      {(customerQuery.agentId === agentProfile.PK && (
         <div style={inputParentBoxStyle}>
           <input
             style={inputBoxStyle}

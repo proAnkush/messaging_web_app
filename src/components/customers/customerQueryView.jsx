@@ -1,4 +1,4 @@
-import { textAlign } from "@mui/system";
+// import { textAlign } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -31,7 +31,7 @@ function CustomerQueryView(props) {
     axios
       .post(
         config.backendBaseUrl +
-          `/customers/${customerProfile?.PK}/queries/${customerQuery?.queryId}/messages`,
+          `/customers/${customerProfile.PK}/queries/${customerQuery.queryId}/messages`,
         {
           messageBody: msgContent,
         }
@@ -43,8 +43,8 @@ function CustomerQueryView(props) {
       })
       .catch((err) => {
         console.error(err);
-        if (err?.response?.data) {
-          alert(err?.response?.data);
+        if (err.response.data) {
+          alert(err.response.data);
         }
       });
   };
@@ -77,8 +77,8 @@ function CustomerQueryView(props) {
               (message.messageSender === customerId && "right") || "left",
             type: "text",
             text: message.messageBody,
-            date: message?.createdAt,
-            senderId: message?.messageSender,
+            date: message.createdAt,
+            senderId: message.messageSender,
           };
         });
         setMessages(msgs);
@@ -139,26 +139,26 @@ function CustomerQueryView(props) {
         <div style={topBarDetailsStyle}>
           {console.log(customerQuery)}
           <p style={topBarDetailStyle}>
-            <b>QueryId</b>: {customerQuery?.queryId}
+            <b>QueryId</b>: {customerQuery.queryId}
           </p>
           <p style={topBarDetailStyle}>
-            <b>CustomerId</b>: {customerQuery?.customerId}
+            <b>CustomerId</b>: {customerQuery.customerId}
           </p>
           <p style={topBarDetailStyle}>
-            <b>Query Title</b>: {customerQuery?.queryTitle}
+            <b>Query Title</b>: {customerQuery.queryTitle}
           </p>
           <p style={topBarDetailStyle}>
-            <b>Query Status</b>: {customerQuery?.queryStatus}
+            <b>Query Status</b>: {customerQuery.queryStatus}
           </p>
           <p style={topBarDetailStyle}>
-            <b>Created At</b>: {customerQuery?.createdAt}
+            <b>Created At</b>: {customerQuery.createdAt}
           </p>
         </div>
       </div>
       <div style={bottomBarStyle}>
         <MessageList messages={messages} />
         {/* <SendMessageComponent
-          queryId={customerQuery?.queryId}
+          queryId={customerQuery.queryId}
           agentId={agentProfile?.agentId}
         /> */}
       </div>

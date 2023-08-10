@@ -1,11 +1,11 @@
 import * as React from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+// import Table from "@mui/material/Table";
+// import TableBody from "@mui/material/TableBody";
+// import TableCell from "@mui/material/TableCell";
+// import TableContainer from "@mui/material/TableContainer";
+// import TableHead from "@mui/material/TableHead";
+// import TableRow from "@mui/material/TableRow";
+// import Paper from "@mui/material/Paper";
 import axios from "axios";
 import config from "../../config";
 import { Link } from "react-router-dom";
@@ -33,7 +33,7 @@ export default function QueriesList() {
       .catch((err) => {
         if (err) {
           console.trace(err);
-          alert(err?.response?.data);
+          alert(err.response.data);
         }
       });
   }
@@ -57,8 +57,8 @@ export default function QueriesList() {
       })
       .catch((err) => {
         console.log(err);
-        if (err?.response?.data) {
-          alert(err?.response?.data);
+        if (err.response.data) {
+          alert(err.response.data);
         }
       });
   };
@@ -92,12 +92,12 @@ export default function QueriesList() {
 
   return (
     <div style={{ marginTop: "60px" }}>
-      <TableContainer component={Paper}>
+      {/* <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>Query Id</TableCell>
-              {/* <TableCell align="right">Customer Id</TableCell> */}
+              {/* <TableCell align="right">Customer Id</TableCell> 
               <TableCell align="right">Title</TableCell>
               <TableCell align="right">Created At</TableCell>
               <TableCell align="right">Status</TableCell>
@@ -114,7 +114,7 @@ export default function QueriesList() {
                     {query?.queryId}
                   </Link>
                 </TableCell>
-                {/* <TableCell align="right">{query?.customerId}</TableCell> */}
+                {/* <TableCell align="right">{query?.customerId}</TableCell> 
                 <TableCell align="right">{query?.queryTitle}</TableCell>
                 <TableCell align="right">
                   {new Date(query?.createdAt).toLocaleString()}
@@ -124,7 +124,7 @@ export default function QueriesList() {
             ))}
           </TableBody>
         </Table>
-      </TableContainer>
+      </TableContainer> */}
 
       <div style={createQueryRowStyle}>
         <textarea

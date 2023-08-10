@@ -1,11 +1,11 @@
 import * as React from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+// import Table from "@mui/material/Table";
+// import TableBody from "@mui/material/TableBody";
+// import TableCell from "@mui/material/TableCell";
+// import TableContainer from "@mui/material/TableContainer";
+// import TableHead from "@mui/material/TableHead";
+// import TableRow from "@mui/material/TableRow";
+// import Paper from "@mui/material/Paper";
 import axios from "axios";
 import config from "../../config";
 import { Link } from "react-router-dom";
@@ -39,8 +39,8 @@ function AllQueries() {
       })
       .catch((err) => {
         console.log(err);
-        if (err?.response?.data) {
-          alert(err?.response?.data);
+        if (err.response.data) {
+          alert(err.response.data);
         }
       });
   };
@@ -65,8 +65,8 @@ function AllQueries() {
       })
       .catch((err) => {
         console.log(err);
-        if (err?.response?.data) {
-          alert(err?.response?.data);
+        if (err.response.data) {
+          alert(err.response.data);
         }
       });
   };
@@ -89,8 +89,8 @@ function AllQueries() {
       })
       .catch((err) => {
         console.log(err);
-        if (err?.response?.data) {
-          alert(err?.response?.data);
+        if (err.response.data) {
+          alert(err.response.data);
         }
       });
   };
@@ -134,7 +134,7 @@ function AllQueries() {
           Search
         </button>
       </div>
-      <TableContainer component={Paper}>
+      {/* <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -159,20 +159,20 @@ function AllQueries() {
           <TableBody>
             {queries.map((query) => (
               <TableRow
-                key={query?.queryId}
+                key={query.queryId}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  <Link to={`/agents/queries/${query?.queryId}`}>
-                    {query?.queryId}
+                  <Link to={`/agents/queries/${query.queryId}`}>
+                    {query.queryId}
                   </Link>
                 </TableCell>
-                <TableCell align="right">{query?.customerId}</TableCell>
-                <TableCell align="right">{query?.queryTitle}</TableCell>
-                <TableCell align="right">{query?.createdAt}</TableCell>
-                <TableCell align="right">{query?.queryStatus}</TableCell>
+                <TableCell align="right">{query.customerId}</TableCell>
+                <TableCell align="right">{query.queryTitle}</TableCell>
+                <TableCell align="right">{query.createdAt}</TableCell>
+                <TableCell align="right">{query.queryStatus}</TableCell>
                 <TableCell align="right">
-                  {(!query?.agentId && (
+                  {(!query.agentId && (
                     <select
                       name=""
                       id=""
@@ -182,7 +182,7 @@ function AllQueries() {
                       <option value={undefined} disabled selected>
                         Assign an agent
                       </option>
-                      {agents?.map((agent) => {
+                      {agents.map((agent) => {
                         return (
                           <option value={agent.agentId}>
                             {agent.name} | {agent.phone}
@@ -190,13 +190,13 @@ function AllQueries() {
                         );
                       })}
                     </select>
-                  )) || <p>{query?.agentId}</p>}
+                  )) || <p>{query.agentId}</p>}
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
-      </TableContainer>
+      </TableContainer> */}
     </div>
   );
 }

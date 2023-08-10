@@ -111,24 +111,24 @@ function MessageList({ messages = [] }) {
 
   const scrollToBottom = () => {
     console.log("me", messagesEnd);
-    messagesEnd?.scrollIntoView({ behavior: "smooth" });
+    messagesEnd.scrollIntoView({ behavior: "smooth" });
   };
   return (
     <div style={messageWindowStyle}>
       {console.log(messages)}
       {messages.map((message) => {
         return (
-          (message?.position === "right" && (
+          (message.position === "right" && (
             <SentMessageComponent
-              content={message?.text}
-              createdAt={message?.date}
-              senderId={message?.senderId}
+              content={message.text}
+              createdAt={message.date}
+              senderId={message.senderId}
             />
           )) || (
             <ReceivedMessageComponent
-              content={message?.text}
-              createdAt={message?.date}
-              senderId={message?.senderId}
+              content={message.text}
+              createdAt={message.date}
+              senderId={message.senderId}
             />
           )
         );

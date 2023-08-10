@@ -1,4 +1,6 @@
 import { Route } from "react-router-dom";
+import * as React from "react";
+
 import Login from "./login";
 import QueriesList from "../lists/agentsQueries";
 import AgentQueryView from "./agentQueryView";
