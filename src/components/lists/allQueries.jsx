@@ -9,8 +9,6 @@ import Paper from "@mui/material/Paper";
 import axios from "axios";
 import config from "../../config";
 import { Link } from "react-router-dom";
-import { FormControl, MenuItem, Select } from "@mui/base";
-import { InputLabel } from "@mui/material";
 
 function AllQueries() {
   const [queries, setQueries] = React.useState([]);
