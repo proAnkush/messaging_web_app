@@ -5,9 +5,9 @@ import AgentRouter from "./components/agents/agentRouter";
 import CustomerRouter from "./components/customers/customerRouter";
 import WhichPortal from "./whichPortal";
 import * as React from "react";
-// import awsconfig from "./aws-exports";
+import awsconfig from "./aws-exports";
 import { Amplify, API } from "aws-amplify";
-Amplify.configure();
+Amplify.configure(awsconfig);
 
 function App() {
   return (
