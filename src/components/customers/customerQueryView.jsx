@@ -91,6 +91,7 @@ function CustomerQueryView(props) {
   const mainStyle = {
     display: "flex",
     flexDirection: "column",
+    marginTop: "60px",
   };
   const topBarStyle = {
     backgroundColor: "rebeccapurple",

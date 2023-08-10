@@ -16,9 +16,9 @@ export default function QueriesList() {
   React.useEffect(() => {
     let customerProfile = JSON.parse(localStorage.getItem("profile"));
     console.log(customerProfile);
-    if (!customerProfile || !customerProfile.PK) {
-      return alert("You are not logged in as AGENT");
-    }
+    // if (!customerProfile || !customerProfile.PK) {
+    //   return alert("You are not logged in as CUSTOMER");
+    // }
     fetchQueries(customerProfile.PK);
     return () => {};
   }, []);
@@ -63,8 +63,35 @@ export default function QueriesList() {
       });
   };
 
+  const createQueryRowStyle = {
+    padding: "14px 0px",
+    display: "flex",
+    flexDirection: "column",
+    maxWidth: "300px",
+    margin: "auto",
+  };
+  const createQueryInputStyle = {
+    fontSize: "1.2em",
+    borderRadius: "6px",
+    padding: "4px 8px",
+    maxWidth: "600px",
+    maxHeight: "600px",
+    minWidth: "300px",
+    minHeight: "100px",
+  };
+  const createQuerySubmitStyle = {
+    color: "white",
+    background: "rebeccapurple",
+    fontSize: "1em",
+    borderRadius: "6px",
+    padding: "4px 8px",
+    border: "none",
+    maxWidth: "200px",
+    margin: "6px auto",
+  };
+
   return (
-    <div>
+    <div style={{ marginTop: "60px" }}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -99,14 +126,17 @@ export default function QueriesList() {
         </Table>
       </TableContainer>
 
-      <div>
-        <input
+      <div style={createQueryRowStyle}>
+        <textarea
           type="text"
-          placeholder="queryTitle"
+          placeholder="What issue are you facing?"
           value={createQueryInput}
           onChange={(e) => setCreateQueryInput(e.target.value)}
+          style={createQueryInputStyle}
         />
-        <button onClick={createQuery}>Create Query</button>
+        <button style={createQuerySubmitStyle} onClick={createQuery}>
+          Create Query
+        </button>
       </div>
     </div>
   );

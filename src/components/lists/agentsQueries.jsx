@@ -15,9 +15,9 @@ export default function QueriesList() {
   React.useEffect(() => {
     let agentProfile = JSON.parse(localStorage.getItem("profile"));
     console.log(agentProfile);
-    if (!agentProfile || !agentProfile.PK) {
-      return alert("You are not logged in as AGENT");
-    }
+    // if (!agentProfile || !agentProfile.PK) {
+    //   return alert("You are not logged in as AGENT");
+    // }
     fetchQueries(agentProfile.PK);
     return () => {};
   }, []);
@@ -38,7 +38,7 @@ export default function QueriesList() {
   }
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} style={{ marginTop: "60px" }}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>

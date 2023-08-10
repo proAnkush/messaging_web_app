@@ -117,6 +117,7 @@ function AgentQueryView(props) {
   const mainStyle = {
     display: "flex",
     flexDirection: "column",
+    marginTop: "60px",
   };
   const topBarStyle = {
     backgroundColor: "rebeccapurple",
@@ -213,18 +214,25 @@ function AgentQueryView(props) {
           agentId={agentProfile?.agentId}
         /> */}
       </div>
-      <div style={inputParentBoxStyle}>
-        <input
-          style={inputBoxStyle}
-          type="text"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="type your response here"
-        />
-        <button style={sendMessageButtonStyle} onClick={sendMessage}>
-          Send
-        </button>
-      </div>
+      {(customerQuery?.agentId === agentProfile.PK && (
+        <div style={inputParentBoxStyle}>
+          <input
+            style={inputBoxStyle}
+            type="text"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="type your response here"
+          />
+          <button style={sendMessageButtonStyle} onClick={sendMessage}>
+            Send
+          </button>
+        </div>
+      )) || (
+        <div style={{ fontSize: "1.1em" }}>
+          You cannot participate in this chat, as you are not the agent assigned
+          to this query.
+        </div>
+      )}
     </div>
   );
 }

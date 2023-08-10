@@ -12,7 +12,7 @@ function SentMessageComponent({ createdAt, content, senderId }) {
     width: "40%",
     padding: "8px 12px",
     borderRadius: "16px",
-    margin: "30px",
+    margin: "10px 30px",
     overflowX: "auto",
     background: "bisque",
   };
@@ -59,7 +59,7 @@ function ReceivedMessageComponent({ createdAt, content, senderId }) {
     width: "40%",
     padding: "8px 12px",
     borderRadius: "16px",
-    margin: "30px",
+    margin: "10px 30px",
     overflowX: "auto",
     background: "bisque",
   };

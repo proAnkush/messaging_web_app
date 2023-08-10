@@ -10,15 +10,19 @@ function WhichPortal() {
   };
   const asAgentStyle = {
     background: "gray",
-    fontSize: "20px",
+    fontSize: "1.6em",
     textAlign: "center",
     cursor: "pointer",
+    padding: "50vh 0px",
+    color: "white",
   };
   const asCustomerStyle = {
     background: "blanchedalmond",
-    fontSize: "20px",
+    fontSize: "1.6em",
     textAlign: "center",
     cursor: "pointer",
+    padding: "50vh 0px",
+    color: "black",
   };
   const navigate = useNavigate();
   return (

@@ -15,15 +15,27 @@ import { InputLabel } from "@mui/material";
 function AllQueries() {
   const [queries, setQueries] = React.useState([]);
   const [agents, setAgents] = React.useState([]);
+  const [searchQueryInputValue, setSearchQueryInputValue] = React.useState("");
+  const [filterQueryStatusInputValue, setFilterQueryStatusInputValue] =
+    React.useState("");
   React.useEffect(() => {
     fetchAllQueries();
     fetchAllAgents();
     return () => {};
   }, []);
 
-  const fetchAllQueries = () => {
+  const fetchAllQueries = (
+    // searchString = undefined,
+    queryStatus = undefined
+  ) => {
+    const searchString = searchQueryInputValue || undefined;
+    queryStatus = queryStatus || filterQueryStatusInputValue || undefined;
     axios
-      .get(config.backendBaseUrl + "/queries")
+      .get(
+        config.backendBaseUrl +
+          "/queries" +
+          getQueryString({ searchString, queryStatus })
+      )
       .then((res) => {
         setQueries(res.data.queries);
       })
@@ -33,6 +45,18 @@ function AllQueries() {
           alert(err?.response?.data);
         }
       });
+  };
+  const getQueryString = (obj = {}) => {
+    if (!obj || Object.keys(obj).length === 0) return "";
+
+    return (
+      "?" +
+      Object.entries(obj)
+        .map(([k, v]) => {
+          return (v && `${k}=${v}`) || undefined;
+        })
+        .join("&")
+    );
   };
   const fetchAllAgents = () => {
     axios
@@ -72,9 +96,46 @@ function AllQueries() {
         }
       });
   };
+  const searchRowStyle = {
+    padding: "14px",
+    display: "flex",
+    justifyContent: "right",
+  };
+  const searchInputBoxStyle = {
+    fontSize: "1em",
+    padding: "4px 8px",
+  };
+  const searchButtonStyle = {
+    fontSize: "1em",
+    color: "white",
+    background: "rebeccapurple",
+    border: "none",
+  };
+  const handleQuerySearch = (e) => {
+    // let searchString = searchQueryInputValue;
+    // let queryFilter = filterQueryStatusInputValue;
+    fetchAllQueries();
+  };
+  const handleQueryStatusFilter = (e) => {
+    let filterStatus = e.target.value;
+    setFilterQueryStatusInputValue(filterStatus);
+    fetchAllQueries(filterStatus);
+  };
 
   return (
-    <div>
+    <div style={{ marginTop: "60px" }}>
+      <div style={searchRowStyle}>
+        <input
+          type="text"
+          value={searchQueryInputValue}
+          onChange={(e) => setSearchQueryInputValue(e.target.value)}
+          style={searchInputBoxStyle}
+          placeholder="Search query by title"
+        />
+        <button style={searchButtonStyle} onClick={handleQuerySearch}>
+          Search
+        </button>
+      </div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -83,7 +144,17 @@ function AllQueries() {
               <TableCell align="right">Customer Id</TableCell>
               <TableCell align="right">Title</TableCell>
               <TableCell align="right">Created At</TableCell>
-              <TableCell align="right">Status</TableCell>
+              <TableCell align="right">
+                Status{" "}
+                <select name="" id="" onChange={handleQueryStatusFilter}>
+                  {["all", "pending", "agentAssigned", "closed"].map(
+                    (item) =>
+                      (item === "all" && (
+                        <option value={undefined}>all</option>
+                      )) || <option value={item}>{item}</option>
+                  )}
+                </select>
+              </TableCell>
               <TableCell align="right">Assigned Agent</TableCell>
             </TableRow>
           </TableHead>
@@ -110,10 +181,13 @@ function AllQueries() {
                       style={{ width: "200px" }}
                       onChange={(e) => handleAgentAssigned(e, query.queryId)}
                     >
+                      <option value={undefined} disabled>
+                        Assign an agent
+                      </option>
                       {agents?.map((agent) => {
                         return (
                           <option value={agent.agentId}>
-                            {agent.name} - {agent.agentId}
+                            {agent.name} | {agent.phone}
                           </option>
                         );
                       })}
