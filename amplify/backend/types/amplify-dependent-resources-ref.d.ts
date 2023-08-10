@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
     "function": {
-        "messagingwebapp5a1f9407": {
+        "messagingwebappfdfedba6": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",
@@ -8,7 +8,7 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "api": {
-        "mwabapi": {
+        "mwabapi2": {
             "RootUrl": "string",
             "ApiName": "string",
             "ApiId": "string"

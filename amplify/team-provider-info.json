@@ -1,27 +1,27 @@
 {
-  "dev": {
+  "main": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-messagingwebapp-dev-182214-authRole",
-      "UnauthRoleArn": "arn:aws:iam::346719532817:role/amplify-messagingwebapp-dev-182214-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::346719532817:role/amplify-messagingwebapp-dev-182214-authRole",
+      "AuthRoleName": "amplify-messagingwebapp-main-133139-authRole",
+      "UnauthRoleArn": "arn:aws:iam::346719532817:role/amplify-messagingwebapp-main-133139-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::346719532817:role/amplify-messagingwebapp-main-133139-authRole",
       "Region": "ap-south-1",
-      "DeploymentBucketName": "amplify-messagingwebapp-dev-182214-deployment",
-      "UnauthRoleName": "amplify-messagingwebapp-dev-182214-unauthRole",
-      "StackName": "amplify-messagingwebapp-dev-182214",
-      "StackId": "arn:aws:cloudformation:ap-south-1:346719532817:stack/amplify-messagingwebapp-dev-182214/bb6ded40-377c-11ee-b86b-0a7dae04bf1c",
-      "AmplifyAppId": "d34ee1dzdjiyrd"
+      "DeploymentBucketName": "amplify-messagingwebapp-main-133139-deployment",
+      "UnauthRoleName": "amplify-messagingwebapp-main-133139-unauthRole",
+      "StackName": "amplify-messagingwebapp-main-133139",
+      "StackId": "arn:aws:cloudformation:ap-south-1:346719532817:stack/amplify-messagingwebapp-main-133139/3cf9bce0-3782-11ee-bcf2-02de60f8b7d0",
+      "AmplifyAppId": "dqt4xyq88nyig"
     },
     "categories": {
       "function": {
-        "messagingwebapp5a1f9407": {
+        "messagingwebappfdfedba6": {
           "accessKeyId": "AKIAVBOQYG4ITJ4CQJHJ",
           "secretAccessKey": "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",
-          "deploymentBucketName": "amplify-messagingwebapp-dev-182214-deployment",
-          "s3Key": "amplify-builds/messagingwebapp5a1f9407-3231794f3946656d3479-build.zip"
+          "deploymentBucketName": "amplify-messagingwebapp-main-133139-deployment",
+          "s3Key": "amplify-builds/messagingwebappfdfedba6-43674532427a53484d42-build.zip"
         }
       },
       "api": {
-        "mwabapi": {}
+        "mwabapi2": {}
       }
     }
   }

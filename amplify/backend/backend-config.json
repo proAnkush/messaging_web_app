@@ -1,6 +1,6 @@
 {
   "function": {
-    "messagingwebapp5a1f9407": {
+    "messagingwebappfdfedba6": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
@@ -8,13 +8,13 @@
     }
   },
   "api": {
-    "mwabapi": {
+    "mwabapi2": {
       "service": "API Gateway",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "messagingwebapp5a1f9407",
+          "resourceName": "messagingwebappfdfedba6",
           "attributes": [
             "Name",
             "Arn"

@@ -53,12 +53,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "messagingwebapp5a1f9407",
+            "messagingwebappfdfedba6",
             {
               "Fn::Join": [
                 "",
                 [
-                  "messagingwebapp5a1f9407",
+                  "messagingwebappfdfedba6",
                   "-",
                   {
                     "Ref": "env"
@@ -101,12 +101,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "messagingwebappLambdaRolecd936aa1",
+            "messagingwebappLambdaRole40157a26",
             {
               "Fn::Join": [
                 "",
                 [
-                  "messagingwebappLambdaRolecd936aa1",
+                  "messagingwebappLambdaRole40157a26",
                   "-",
                   {
                     "Ref": "env"

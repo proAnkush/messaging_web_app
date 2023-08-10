@@ -3,7 +3,7 @@
   "paths": {
     "/": {
       "name": "/",
-      "lambdaFunction": "messagingwebapp5a1f9407",
+      "lambdaFunction": "messagingwebappfdfedba6",
       "permissions": {
         "setting": "open"
       }
