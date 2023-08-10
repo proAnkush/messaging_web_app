@@ -30,13 +30,13 @@ function AllQueries() {
     queryStatus = undefined
   ) => {
     const searchString = searchQueryInputValue || undefined;
-    queryStatus = queryStatus || filterQueryStatusInputValue || undefined;
+    queryStatus = queryStatus || undefined;
     API.get(
       "mwabapi2",
       "/queries" + getQueryString({ searchString, queryStatus })
     )
       .then((res) => {
-        setQueries(res.data.queries);
+        setQueries(res.queries);
       })
       .catch((err) => {
         console.log(err);
@@ -60,8 +60,8 @@ function AllQueries() {
   const fetchAllAgents = () => {
     API.get("mwabapi2", "/agents")
       .then((res) => {
-        console.log("all agents: ", res.data.agents);
-        setAgents(res.data.agents || []);
+        console.log("all agents: ", res.agents);
+        setAgents(res.agents || []);
       })
       .catch((err) => {
         console.log(err);
@@ -77,7 +77,7 @@ function AllQueries() {
     console.log(agentId);
     console.log(queryId);
     API.post("mwabapi2", `/agents/${agentProfile.PK}/queries/${queryId}`, {
-      agentId: agentId,
+      body: { agentId: agentId },
     })
       .then((res) => {
         console.log(res);
@@ -112,6 +112,10 @@ function AllQueries() {
   };
   const handleQueryStatusFilter = (e) => {
     let filterStatus = e.target.value;
+    if (filterStatus === "all") {
+      setFilterQueryStatusInputValue("");
+      return fetchAllQueries("");
+    }
     setFilterQueryStatusInputValue(filterStatus);
     fetchAllQueries(filterStatus);
   };

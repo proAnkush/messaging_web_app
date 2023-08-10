@@ -1,3 +1,4 @@
+import { API } from "aws-amplify";
 import axios from "axios";
 import React, { useState } from "react";
 import { redirect, useNavigate } from "react-router-dom";
@@ -15,17 +16,12 @@ function Login() {
     if (!phone || !name) {
       return alert("please provide phone and name");
     }
-    let profile = await axios
-      .post(config.backendBaseUrl + "/customers", {
-        customerName: name,
-        customerPhone: phone,
-      })
+    let profile = await API.post("mwabapi2", "/customers", {
+      body: { customerName: name, customerPhone: phone },
+    })
       .then((res) => {
         console.log(res);
-        localStorage.setItem(
-          "profile",
-          JSON.stringify(res.data.customerProfile)
-        );
+        localStorage.setItem("profile", JSON.stringify(res.customerProfile));
         navigate("/customers/queries");
       })
       .catch((err) => {

@@ -27,7 +27,7 @@ export default function QueriesList() {
     API.get("mwabapi2", `/agents/${agentId}/queries`)
       .then((res) => {
         console.log(res);
-        setQueries(res.data.queries);
+        setQueries(res.queries);
       })
       .catch((err) => {
         if (err) {

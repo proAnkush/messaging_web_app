@@ -28,7 +28,7 @@ export default function QueriesList() {
     API.get("mwabapi2", `/customers/${customerId}/queries`)
       .then((res) => {
         console.log(res);
-        setQueries(res.data.queries);
+        setQueries(res.queries);
       })
       .catch((err) => {
         if (err) {
@@ -44,7 +44,7 @@ export default function QueriesList() {
 
     console.log(customerProfile);
     API.post("mwabapi2", `/customers/${customerProfile.PK}/queries`, {
-      queryTitle: createQueryTitle,
+      body: { queryTitle: createQueryTitle },
     })
       .then((res) => {
         fetchQueries(customerProfile.PK);

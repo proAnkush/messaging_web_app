@@ -33,7 +33,7 @@ function AgentQueryView(props) {
       "mwabapi2",
       `/agents/${agentProfile.PK}/queries/${customerQuery.queryId}/messages`,
       {
-        messageBody: msgContent,
+        body: { messageBody: msgContent },
       }
     )
       .then((res) => {
@@ -55,7 +55,7 @@ function AgentQueryView(props) {
     API.get("mwabapi2", `/agents/${agentId}/queries/${queryId}`)
       .then((res) => {
         console.log("res", res);
-        setCustomerQuery(res.data || {});
+        setCustomerQuery(res || {});
       })
       .catch((err) => {
         console.trace("er", err);
@@ -69,7 +69,7 @@ function AgentQueryView(props) {
     API.get("mwabapi2", `/agents/${agentId}/queries/${queryId}/messages`)
       .then((res) => {
         console.log("res2", res);
-        let msgs = (res.data && res.data.messages) || [];
+        let msgs = (res && res.messages) || [];
         msgs = msgs.map((message) => {
           return {
             position: (message.messageSender === agentId && "right") || "left",
@@ -95,8 +95,7 @@ function AgentQueryView(props) {
     }
 
     API.put("mwabapi2", `/agents/${agentId}/queries/${queryId}`, {
-      newStatus: newStatus,
-      customerId: customerId,
+      body: { newStatus: newStatus, customerId: customerId },
     })
       .then((res) => {
         console.log(res);

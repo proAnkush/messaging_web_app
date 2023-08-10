@@ -32,7 +32,7 @@ function CustomerQueryView(props) {
       "mwabapi2",
       `/customers/${customerProfile.PK}/queries/${customerQuery.queryId}/messages`,
       {
-        messageBody: msgContent,
+        body: { messageBody: msgContent },
       }
     )
       .then((res) => {
@@ -51,7 +51,7 @@ function CustomerQueryView(props) {
     API.get("mwabapi2", `/customers/${customerId}/queries/${queryId}`)
       .then((res) => {
         console.log("res", res);
-        setCustomerQuery(res.data);
+        setCustomerQuery(res);
       })
       .catch((err) => {
         console.trace("er", err);
@@ -62,7 +62,7 @@ function CustomerQueryView(props) {
     API.get("mwabapi2", `/customers/${customerId}/queries/${queryId}/messages`)
       .then((res) => {
         console.log("res2", res);
-        let msgs = res.data.messages;
+        let msgs = res.messages;
         msgs = msgs.map((message) => {
           return {
             position:
