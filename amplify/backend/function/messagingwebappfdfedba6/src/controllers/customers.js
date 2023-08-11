@@ -45,7 +45,7 @@ exports.createCustomerProfile = async (req, res, next) => {
   }
   return res.status(201).json({
     message: "customer created successfully",
-    customerProfile: createCustomerResponse.customer,
+    customerProfile: createCustomerResponse?.customer || {},
   });
 };
 exports.getCustomerQueries = async (req, res) => {

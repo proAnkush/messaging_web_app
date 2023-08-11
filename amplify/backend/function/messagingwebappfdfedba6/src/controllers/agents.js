@@ -43,7 +43,7 @@ exports.createAgentProfile = async (req, res, next) => {
   }
   return res.status(201).json({
     message: "agent created successfully",
-    agentProfile: createAgentResponse,
+    agentProfile: createAgentResponse?.agent || {},
   });
 };
 
