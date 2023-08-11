@@ -144,7 +144,8 @@ function CustomerQueryView(props) {
             <b>Query Status</b>: {customerQuery.queryStatus}
           </p>
           <p style={topBarDetailStyle}>
-            <b>Created At</b>: {customerQuery.createdAt}
+            <b>Created At</b>:{" "}
+            {new Date(customerQuery.createdAt).toLocaleString()}
           </p>
         </div>
       </div>

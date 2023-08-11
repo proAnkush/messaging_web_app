@@ -204,7 +204,8 @@ function AgentQueryView(props) {
             </select>
           </p>
           <p style={topBarDetailStyle}>
-            <b>Created At</b>: {customerQuery.createdAt}
+            <b>Created At</b>:{" "}
+            {new Date(customerQuery.createdAt).toLocaleString()}
           </p>
         </div>
       </div>
