@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Messaging web app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Running the web app locally
+### install nodejs
+> sudo apt-get update
 
-## Available Scripts
 
-In the project directory, you can run:
+> curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
-### `npm start`
+> sudo apt-get install -y nodejs
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### clone repository
+> sudo apt-get install git
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+> git clone https://github.com/proAnkush/messaging_web_app.git 
 
-### `npm test`
+### start react app locally
+> cd messaging_web_app_backend/ 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> npm install
 
-### `npm run build`
+> npm start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+And the web app will start running on http://localhost:3000
+When running locally the app will use amplify hosted backend.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Backend local setup instructions
+### pull the latest backend code from amplify
+> amplify pull --appId dqt4xyq88nyig --envName main
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## mocking api locally
+### Create mock event
+> touch event.json
 
-### `npm run eject`
+event.json
+```json
+{
+  "httpMethod": "GET",
+  "path": "/queries",
+  "queryStringParameters": {
+    "limit": "10"
+  },
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": ""
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Run amplify mock
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> amplify mock function messagingwebappfdfedba6
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Provide path to previously created event.json when prompted
