@@ -15,9 +15,9 @@ function AgentQueryView(props) {
   let params = useParams();
   useEffect(() => {
     let agentProfile = JSON.parse(localStorage.getItem("profile"));
-    if (!agentProfile || !agentProfile.PK) {
-      return alert("not logged in as agent");
-    }
+    // if (!agentProfile || !agentProfile.PK) {
+    //   return alert("not logged in as agent");
+    // }
     console.log(params);
     let queryId = params.queryId;
     fetchQuery(agentProfile.PK, queryId);
@@ -119,6 +119,7 @@ function AgentQueryView(props) {
     color: "white",
     height: "20vh",
     minHeight: "180px",
+    overflowY: "scroll",
   };
   const bottomBarStyle = {
     maxHeight: "70vh",
@@ -182,11 +183,17 @@ function AgentQueryView(props) {
                 )
               }
             >
+              {customerQuery.queryStatus === "pending" && (
+                <option selected disabled>
+                  pending
+                </option>
+              )}
               {["agentAssigned", "closed"].map((status) => {
                 return (
                   <option
                     value={status}
                     selected={status === customerQuery.queryStatus}
+                    disabled={status === customerQuery.queryStatus}
                   >
                     {status}
                   </option>

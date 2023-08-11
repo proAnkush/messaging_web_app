@@ -14,9 +14,9 @@ function CustomerQueryView(props) {
   let params = useParams();
   useEffect(() => {
     let customerProfile = JSON.parse(localStorage.getItem("profile"));
-    if (!customerProfile || !customerProfile.PK) {
-      return alert("not logged in as agent");
-    }
+    // if (!customerProfile || !customerProfile.PK) {
+    //   return alert("not logged in as agent");
+    // }
     console.log(params);
     let queryId = params.queryId;
     fetchQuery(customerProfile.PK, queryId);
@@ -90,6 +90,7 @@ function CustomerQueryView(props) {
     color: "white",
     height: "20vh",
     minHeight: "180px",
+    overflowY: "scroll",
   };
   const bottomBarStyle = {
     maxHeight: "70vh",

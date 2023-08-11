@@ -169,7 +169,9 @@ function AllQueries() {
                 </TableCell>
                 <TableCell align="right">{query.customerId}</TableCell>
                 <TableCell align="right">{query.queryTitle}</TableCell>
-                <TableCell align="right">{query.createdAt}</TableCell>
+                <TableCell align="right">
+                  {new Date(query.createdAt).toLocaleString()}
+                </TableCell>
                 <TableCell align="right">{query.queryStatus}</TableCell>
                 <TableCell align="right">
                   {(!query.agentId && (
